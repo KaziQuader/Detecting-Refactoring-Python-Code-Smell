@@ -1,0 +1,12 @@
+[flake8]
+
+max-line-length = 90
+exclude = conformance
+ignore =
+  # irrelevant plugins
+  B3,
+  DW12,
+  # code is sometimes better without this
+  E129,
+  # consistency with mypy
+  W504

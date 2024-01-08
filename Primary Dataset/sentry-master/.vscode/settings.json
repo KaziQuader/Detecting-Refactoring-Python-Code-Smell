@@ -1,0 +1,74 @@
+{
+  "files.exclude": {
+    "*.egg-info": true,
+    "*.log": false,
+    "**/*.js.map": true,
+    "**/*.min.js": true,
+    "**/*.pyc": true,
+    "build": true,
+    "htmlcov": true,
+    "node_modules": true,
+    "src/sentry/locale": true,
+    "src/sentry/static/sentry/dist/": true,
+    "model-manifest.json": true
+  },
+  "search.followSymlinks": false,
+  "files.trimTrailingWhitespace": true,
+  "files.trimFinalNewlines": true,
+  "files.insertFinalNewline": true,
+
+  "editor.codeActionsOnSave": {
+    "source.fixAll.eslint": "explicit"
+  },
+
+  "[javascript]": {
+    "editor.formatOnSave": true,
+    "editor.tabSize": 2
+  },
+
+  "[typescript]": {
+    "editor.formatOnSave": true,
+    "editor.tabSize": 2
+  },
+  // Exclude Specific Files from Auto-Imports
+  "typescript.preferences.autoImportFileExcludePatterns": [
+    "**/config/chartcuterie/*",
+    "**/node_modules/@testing-library/*",
+    "**/node_modules/@tanstack/react-query"
+  ],
+  // Avoid relative imports
+  "typescript.preferences.importModuleSpecifier": "non-relative",
+
+  "[typescriptreact]": {
+    "editor.formatOnSave": true,
+    "editor.tabSize": 2
+  },
+
+  "[javascriptreact]": {
+    "editor.formatOnSave": true,
+    "editor.tabSize": 2
+  },
+
+  "[less]": {
+    "editor.formatOnSave": true
+  },
+
+  "[python]": {
+    "editor.formatOnSave": true,
+    "editor.codeActionsOnSave": {
+      "source.organizeImports": "explicit",
+      "source.fixAll.eslint": "never"
+    },
+    "editor.defaultFormatter": "ms-python.black-formatter"
+  },
+
+  "[html]": {
+    "editor.formatOnSave": false
+  },
+
+  "editor.tabSize": 4,
+  "python.testing.pytestEnabled": true,
+  "python.testing.unittestEnabled": false,
+  "python.testing.pytestPath": "${workspaceFolder}/.venv/bin/pytest",
+  "python.testing.pytestArgs": ["tests"]
+}

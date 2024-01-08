@@ -1,0 +1,22 @@
+name: file-check
+
+on:
+  push:
+    branches: [master]
+  pull_request:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        python-version:
+          - "3.9"
+    steps:
+      - uses: actions/checkout@v3
+      - name: Install langchain
+        run: |
+          pip install -U langchain
+      - name: Analysing the files with our Make command
+        run: |
+          make file-check

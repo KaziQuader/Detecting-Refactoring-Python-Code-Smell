@@ -1,0 +1,29 @@
+name: Poetry install and pytest
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Install Poetry
+        run: |
+          pipx install poetry
+
+      - uses: actions/setup-python@v4
+        with:
+          python-version: "3.10"
+          cache: 'poetry'
+
+      # Install dependencies using Poetry
+      - name: Install dependencies
+        run: poetry install
+
+      # Run unit tests using Poetry
+      - name: Run unit tests
+        run: poetry run pytest --cov=gpt_engineer

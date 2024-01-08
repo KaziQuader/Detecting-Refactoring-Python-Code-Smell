@@ -1,0 +1,13 @@
+async-openai
+datasets
+eliot
+eliot-tree
+faiss-cpu
+google-search-results
+gradio==4.7
+huggingface-hub
+jinja2
+jinja2-highlight
+openai==0.28
+parsita==1.7.1
+trio

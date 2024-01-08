@@ -1,0 +1,6 @@
+{
+  "load_from_llm_and_tools": true,
+  "_type": "zero-shot-react-description",
+  "prefix": "Answer the question as best you can.\n The answer you return should come directly from the database tools. Be very explicit and specific with what you want when you ask the databases for information. Finally, don't use SQL syntax in your request but rather use natural language. If you cannot get an answer from the provided tools, say \"There is not enough information in the DB to answer the question.\"\nYou have access to the following DB:",
+  "suffix": "Begin!\nQuestion: {input}\nThought:{agent_scratchpad}"
+}

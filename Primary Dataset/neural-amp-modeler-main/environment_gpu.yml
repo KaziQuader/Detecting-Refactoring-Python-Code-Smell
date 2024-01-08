@@ -1,0 +1,41 @@
+# File: environment.yml
+# Created Date: Saturday February 13th 2021
+# Author: Steven Atkinson (steven@atkinson.mn)
+
+name: nam
+channels:
+  - conda-forge # pytest-mock, onnxruntime
+  - pytorch
+  - nvidia  # GPU
+dependencies:
+  - python<3.11 # onnxruntime
+  - black
+  - flake8
+  - h5py
+  - jupyter
+  - matplotlib
+  - numpy
+  - onnx
+  - onnxruntime!=1.16.0
+  - pip
+  - pre-commit
+  - pydantic
+  - pytest
+  - pytest-mock
+  - pytorch
+  # If your GPU isn't being detected, you may need a different version.
+  # You're going to need to look at Table 3 here: 
+  # https://docs.nvidia.com/cuda/cuda-toolkit-release-notes/index.html#cuda-major-component-versions__table-cuda-toolkit-driver-versions
+  - pytorch-cuda=12.1  # GPU
+  - scipy
+  - semver
+  - tensorboard
+  - tqdm
+  - wheel
+  - pip:
+      - auraloss==0.3.0
+      - pytorch_lightning
+      - sounddevice
+      - transformers>=4  # See requirements.txt
+      - wavio >=0.0.5
+      - -e .

@@ -1,0 +1,56 @@
+name: CI
+on: [push, pull_request]
+
+jobs:
+  test_and_lint:
+    name: Test and lint
+    runs-on: ${{ matrix.operating-system }}
+    strategy:
+      matrix:
+        operating-system: [ubuntu-latest, windows-latest, macos-latest]
+        python-version: ['3.8', '3.9', '3.10', '3.11']
+        pytorch-toolbelt-version: [tests]
+      fail-fast: false
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v2
+    - name: Set up Python
+      uses: actions/setup-python@v2
+      with:
+        python-version: ${{ matrix.python-version }}
+    - name: Update pip
+      run: python -m pip install --upgrade pip
+    - name: Install PyTorch
+      run: pip install torch torchvision torchaudio --extra-index-url https://download.pytorch.org/whl/cpu
+    - name: Install dependencies
+      run: pip install .[${{ matrix.pytorch-toolbelt-version }}]
+    - name: Install linters
+      run: pip install flake8==5
+    - name: Run PyTest
+      run: pytest
+    - name: Run Flake8
+      run: flake8
+#    - name: Install MyPy
+#      run: pip install mypy==0.800
+#    - name: Run mypy
+#      run: mypy .
+
+  check_code_formatting:
+    name: Check code formatting with Black
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        python-version: ['3.8', '3.9', '3.10', '3.11']
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v2
+    - name: Set up Python
+      uses: actions/setup-python@v2
+      with:
+        python-version: ${{ matrix.python-version }}
+    - name: Update pip
+      run: python -m pip install --upgrade pip
+    - name: Install Black
+      run: pip install black==23.7.0
+    - name: Run Black
+      run: black --config=pyproject.toml --check .
