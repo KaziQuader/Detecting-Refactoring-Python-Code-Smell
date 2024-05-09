@@ -1,6 +1,4 @@
-def classify_person(age, gender, income):
-    num = 10
-
+def method(age, gender, income):
     if age < 18:
         if gender == 'male':
             if income < 20000:
@@ -31,7 +29,6 @@ def classify_person(age, gender, income):
                 return 'Middle-aged female with moderate income'
             else:
                 return 'Middle-aged female with high income'
-    else:  # Age is 65 or above
         if gender == 'male':
             if income < 25000:
                 return 'Senior male with low income'
@@ -47,4 +44,3 @@ def classify_person(age, gender, income):
             else:
                 return 'Senior female with high income'
             
-    okay = 'okay'
