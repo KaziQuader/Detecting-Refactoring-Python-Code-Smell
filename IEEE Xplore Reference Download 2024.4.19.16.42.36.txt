@@ -1,0 +1,32 @@
+1. M. Fowler, Refactoring: improving the design of existing code, Addison-Wesley Professional, 2018.
+
+2. E. A. AlOmar, H. AlRubaye, M. W. Mkaouer, A. Ouni and M. Kessentini, "Refactoring practices in the context of modern code review: An industrial case study at Xerox", Proceedings of the 2021 IEEE/ACM 43rd International Conference on Software Engineering: Software Engineering in Practice (ICSE-SEIP), pp. 348-357, 2021.
+
+3. E. Murphy-Hill, C. Parnin and A. P. Black, "How we refactor and how we know it", IEEE Transactions on Software Engineering, vol. 38, no. 1, pp. 5-18, 2011.
+
+4. N. Tsantalis, A. Ketkar and D. Dig, "Refactoringminer 2.0", IEEE Transactions on Software Engineering, pp. 1-1, 2020.
+
+5. D. Silva, J. Silva, G. J. De Souza Santos, R. Terra and M. T. O. Valente, "RefDiff 2.0: A multi-language refactoring detection tool", IEEE Transactions on Software Engineering, pp. 1-1, 2020.
+
+6. M. Kim, M. Gee, A. Loh and N. Rachatasumrit, "Ref-Finder: A refactoring reconstruction tool based on logic query templates", Proceedings of the Eighteenth ACM SIGSOFT International Symposium on Foundations of Software Engineering, pp. 371-372, 2010.
+
+7. D. Dig, C. Comertoglu, D. Marinov and R. Johnson, "Automated detection of refactorings in evolving components", Proceedings of the Object-Oriented Programming, pp. 404-428, 2006.
+
+8. S. Raschka, J. Patterson and C. Nolet, "Machine learning in Python: Main developments and technology trends in data science machine learning and artificial intelligence", Information, vol. 11, no. 4, 2020.
+
+9. M. Dilhara, "Discovering repetitive code changes in ML systems", 2021 ACM Joint European Software Engineering Conference and Symposium on the Foundations of Software Engineering - Student Research Competition, pp. 1683-1685, 2021.
+
+10. Z. Xing and E. Stroulia, "The JDEvAn tool suite in support of object-oriented evolutionary development", Proceedings of the 30th International Conference on Software Engineering, pp. 951-952, 2008.
+
+11. Z. Xing and E. Stroulia, "UmlDiff: An algorithm for object-oriented design differencing", Proceedings of the 20th IEEE/ACM International Conference on Automated Software Engineering, pp. 54-65, 2005.
+
+12. K. Prete, N. Rachatasumrit, N. Sudan and M. Kim, "Template-based reconstruction of complex refactorings", 2010 IEEE International Conference on Software Maintenance, pp. 1-10, 2010.
+
+13. K. De Volder, "Type-oriented logic meta programming", Ph.D. dissertation, 1998.
+
+14. D. Silva and M. T. Valente, "RefDiff: Detecting refactorings in version histories", Proceedings of the IEEE/ACM 14th International Conference on Mining Software Repositories, pp. 269-279, 2017.
+
+15. J. Aycock, "Aggressive type inference", the 8th International Python Conference, pp. 11-20, 2000.
+
+16. Z. Xu, X. Zhang, L. Chen, K. Pei and B. Xu, "Python probabilistic type inference with natural language support", the 24th ACM SIGSOFT International Symposium on Foundations of Software (FSE), pp. 607-618, 2016.
+
