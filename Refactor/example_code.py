@@ -48,7 +48,7 @@ def classify_person(age, gender, income):
     x = 3
     y= 4
     z =5
-    
+
     if age == 14: 
         if gender == 'male':
             if income < 25000:
@@ -64,4 +64,3 @@ def classify_person(age, gender, income):
                 return 'Senior female with moderate income'
             else:
                 return 'Senior female with high income'
-    x = y
