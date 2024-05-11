@@ -52,13 +52,4 @@ def check_method(filename):
             data[total_line_num] = line_code_arr
             total_line_num += 1
                         
-    # parameters = ''
-    # for i in range(len(variables)):
-    #     if i != len(variables) - 1:
-    #         parameters += variables[i] + ', '
-    #     else:
-    #         parameters += variables[i]
-    print(long_condition)
     return data, long_condition
-
-check_method('Refactor/example_code.py')
