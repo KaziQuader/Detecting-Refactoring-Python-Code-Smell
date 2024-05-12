@@ -12,7 +12,7 @@ def _resolve_weighted_web_vital_score_function(
             "measurements.score.fid",
             "measurements.score.cls",
             "measurements.score.ttfb",
-        ]:
+        ]: 
             raise InvalidSearchQuery("performance_score only supports measurements")
 
         return Function(
