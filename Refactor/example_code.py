@@ -1,12 +1,12 @@
-from new_method import *
 def classify_person(age, gender, income):
-
+    num, x, y = 10, 5, 7
     if age < 18:
         if gender == 'male':
             if income < 20000:
                 return 'Young male with low income'
             elif 20000 <= income < 40000:
                 return 'Young male with moderate income'
+                num += 5
             else:
                 return 'Young male with high income'
         else:  # Gender is female
@@ -16,7 +16,6 @@ def classify_person(age, gender, income):
                 return 'Young female with moderate income'
             else:
                 return 'Young female with high income'
-
     elif 18 <= age < 65:
         if gender == 'male':
             if income < 30000:
@@ -47,7 +46,6 @@ def classify_person(age, gender, income):
                 return 'Senior female with moderate income'
             else:
                 return 'Senior female with high income'
-
     x = 5
     if age < 18:
         if gender == 'male':
