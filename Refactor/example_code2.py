@@ -1,4 +1,6 @@
-def method_1(ExtractorError, manifest, playable, formats, asset, data, preplay, titles, title, description, duration, thumbnails, image, subtitles, sub, info, series, episode, programs):
+def _real_extract(self, url):
+        video_id = self._match_id(url).split('/')[-1]
+
         def call_playback_api(item, query=None):
             try:
                 return self._call_api(f'playback/{item}/program/{video_id}', video_id, item, query=query)
@@ -7,7 +9,16 @@ def method_1(ExtractorError, manifest, playable, formats, asset, data, preplay, 
                     return self._call_api(f'playback/{item}/{video_id}', video_id, item, query=query)
                 raise
 
-def method_2(ExtractorError, manifest, playable, formats, asset, data, preplay, titles, title, description, duration, thumbnails, image, subtitles, sub, info, series, episode, programs):
+        # known values for preferredCdn: akamai, iponly, minicdn and telenor
+        manifest = call_playback_api('manifest', {'preferredCdn': 'akamai'})
+
+        video_id = try_get(manifest, lambda x: x['id'], compat_str) or video_id
+
+        if manifest.get('playability') == 'nonPlayable':
+            self._raise_error(manifest['nonPlayable'])
+
+        playable = manifest['playable']
+
         formats = []
         for asset in playable['assets']:
             if not isinstance(asset, dict):
@@ -27,7 +38,16 @@ def method_2(ExtractorError, manifest, playable, formats, asset, data, preplay, 
                     'vcodec': 'none',
                 })
 
-def method_3(ExtractorError, manifest, playable, formats, asset, data, preplay, titles, title, description, duration, thumbnails, image, subtitles, sub, info, series, episode, programs):
+        data = call_playback_api('metadata')
+
+        preplay = data['preplay']
+        titles = preplay['titles']
+        title = titles['title']
+        alt_title = titles.get('subtitle')
+
+        description = try_get(preplay, lambda x: x['description'].replace('\r', '\n'))
+        duration = parse_duration(playable.get('duration')) or parse_duration(data.get('duration'))
+
         thumbnails = []
         for image in try_get(
                 preplay, lambda x: x['poster']['images'], list) or []:
@@ -42,7 +62,6 @@ def method_3(ExtractorError, manifest, playable, formats, asset, data, preplay, 
                 'height': int_or_none(image.get('pixelHeight')),
             })
 
-def method_4(ExtractorError, manifest, playable, formats, asset, data, preplay, titles, title, description, duration, thumbnails, image, subtitles, sub, info, series, episode, programs):
         subtitles = {}
         for sub in try_get(playable, lambda x: x['subtitles'], list) or []:
             if not isinstance(sub, dict):
@@ -58,7 +77,6 @@ def method_4(ExtractorError, manifest, playable, formats, asset, data, preplay, 
                 'url': sub_url,
             })
 
-def method_5(ExtractorError, manifest, playable, formats, asset, data, preplay, titles, title, description, duration, thumbnails, image, subtitles, sub, info, series, episode, programs):
         legal_age = try_get(
             data, lambda x: x['legalAge']['body']['rating']['code'], compat_str)
         # https://en.wikipedia.org/wiki/Norwegian_Media_Authority
@@ -69,7 +87,8 @@ def method_5(ExtractorError, manifest, playable, formats, asset, data, preplay, 
             elif legal_age.isdigit():
                 age_limit = int_or_none(legal_age)
 
-def method_6(ExtractorError, manifest, playable, formats, asset, data, preplay, titles, title, description, duration, thumbnails, image, subtitles, sub, info, series, episode, programs):
+        is_series = try_get(data, lambda x: x['_links']['series']['name']) == 'series'
+
         info = {
             'id': video_id,
             'title': title,
@@ -83,7 +102,6 @@ def method_6(ExtractorError, manifest, playable, formats, asset, data, preplay, 
             'timestamp': parse_iso8601(try_get(manifest, lambda x: x['availability']['onDemand']['from'], str))
         }
 
-def method_7(ExtractorError, manifest, playable, formats, asset, data, preplay, titles, title, description, duration, thumbnails, image, subtitles, sub, info, series, episode, programs):
         if is_series:
             series = season_id = season_number = episode = episode_number = None
             programs = self._call_api(
@@ -121,3 +139,4 @@ def method_7(ExtractorError, manifest, playable, formats, asset, data, preplay, 
                 'episode_number': episode_number,
             })
 
+        return info

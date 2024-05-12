@@ -28,7 +28,7 @@ def write_function_name(parameters):
 
 
 def extract_method(data, long_condition):
-    new_method = open('Refactor/new_method.py', 'w')
+    new_method = open('new_method.py', 'w')
     
     for key in long_condition:
         parameters = long_condition[key][1]
