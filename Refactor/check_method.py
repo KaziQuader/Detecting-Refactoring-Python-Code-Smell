@@ -1,27 +1,6 @@
 import re
 import keyword
 
-def check_variable_scope(arr):
-    arr_to_str = ', '.join(arr)
-    line = arr_to_str
-
-    # Splitting the line by '=' and extracting the variables
-    variables_part = line.split('=')[0].strip()
-
-    # Splitting the variables_part by ',' and stripping extra spaces
-    variable_names = [var.strip() for var in variables_part.split(',')]
-    variable_names = [element for element in variable_names if element != '']
-    return variable_names
-
-# def extract_params(arr):
-#     arr_to_str = ', '.join(arr)
-#     signature = arr_to_str
-#     # print(signature)
-#     # Extract parameters using regular expressions
-#     parameters = re.findall(r'\b\w+\b', signature)[1:]
-#     # print(parameters)
-#     return parameters
-
 def check_method(filename):
     data, long_condition = {}, {}
     variables = []
@@ -34,8 +13,6 @@ def check_method(filename):
         for line in f:
             line_with_whitespace = line.decode("utf-8")
             line_code_arr = re.split(r'(\s+)', line_with_whitespace)
-            
-            
             
             if line_code_arr[1] == '\n':
                 total_line_num += 1
@@ -52,7 +29,6 @@ def check_method(filename):
                 condition_flag = True
                 # print(line_code_arr[2])
             elif len(line_code_arr[1]) == 4: 
-                scope_variables = check_variable_scope(line_code_arr) 
                 condition_flag = False
 
             # print(condition_flag)
@@ -78,11 +54,6 @@ def check_method(filename):
                         if line_code_arr[i] not in variables:
                             variables.append(line_code_arr[i])
                         
-                        # if line_code_arr[i] in scope_variables:
-                        #     print(scope_variables)
-                        #     print(line_code_arr[i])
-                        #     variables.append(line_code_arr[i])
-                        #     print(variables)
                 # print(long_condition)
                 if line_code_arr[-1] != '':
                     indentation = False
@@ -95,15 +66,12 @@ def check_method(filename):
                 if count > 6:
                     num_of_long_conditions += 1
                     long_condition[num_of_long_conditions] = [[start, end], variables]
+                    variables = []
                 count = 0
             
             data[total_line_num] = line_code_arr
             total_line_num += 1
-            
-            
-            # print(data[1])
-            # params = extract_params(data[1])
-            # print(params)
+           
     print(long_condition)
                         
     return data, long_condition

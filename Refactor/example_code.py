@@ -1,5 +1,5 @@
 def classify_person(age, gender, income):
-    num, x, y = 10, 5, 7
+    # num, x, y = 10, 5, 7
     if age < 18:
         if gender == 'male':
             if income < 20000:
@@ -11,6 +11,8 @@ def classify_person(age, gender, income):
                 return 'Young male with high income'
         else:  # Gender is female
             if income < 20000:
+                # x += 1
+                # y += 2
                 return 'Young female with low income'
             elif 20000 <= income < 40000:
                 return 'Young female with moderate income'
@@ -46,12 +48,13 @@ def classify_person(age, gender, income):
                 return 'Senior female with moderate income'
             else:
                 return 'Senior female with high income'
-    x = 5
+    # x = 5
     if age < 18:
         if gender == 'male':
             if income < 20000:
                 return 'Young male with low income'
             elif 20000 <= income < 40000:
+                # x = 5
                 return 'Young male with moderate income'
             else:
                 return 'Young male with high income'
