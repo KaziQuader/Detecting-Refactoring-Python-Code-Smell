@@ -3,20 +3,15 @@ def test_complex_clash(self):
         tgt_safe = models.CharField(max_length=10)
         clash = models.CharField(max_length=10)
         model = models.CharField(max_length=10)
-
         clash1_set = models.CharField(max_length=10)
-
     class Model(models.Model):
         src_safe = models.CharField(max_length=10)
-
         foreign_1 = models.ForeignKey(Target, models.CASCADE, related_name="id")
         foreign_2 = models.ForeignKey(
             Target, models.CASCADE, related_name="src_safe"
         )
-
         m2m_1 = models.ManyToManyField(Target, related_name="id")
         m2m_2 = models.ManyToManyField(Target, related_name="src_safe")
-
     self.assertEqual(
         Model.check(),
         [

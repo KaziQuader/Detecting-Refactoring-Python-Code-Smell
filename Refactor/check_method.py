@@ -1,6 +1,29 @@
 import re
 import keyword
 
+def create_parameters(line_code_arr, variables):
+    for i in range(len(line_code_arr)):
+        flag = False
+        if line_code_arr[i] == 'return' or line_code_arr[i] == '#':
+            break
+
+        if re.match(r'^["\']', line_code_arr[i]) is not None:
+            break
+
+        if line_code_arr[i] == '':
+            continue
+
+        if line_code_arr[i][-1] == ':':
+            line_code_arr[i] = line_code_arr[i][:-1]
+        
+        if ("_" in line_code_arr[i] and line_code_arr[i].split('_')[-1].isalpha()):
+            flag = True
+
+        if (line_code_arr[i].isalpha() or flag) and not keyword.iskeyword(line_code_arr[i]):
+            print(line_code_arr[i])
+            if line_code_arr[i] not in variables:
+                variables.append(line_code_arr[i])
+
 def check_method(filename):
     data, long_condition = {}, {}
     variables = []
@@ -9,26 +32,20 @@ def check_method(filename):
     condition_flag = False
 
     with open(filename, 'rb') as f:
-    
+
         for line in f:
             line_with_whitespace = line.decode("utf-8")
             line_code_arr = re.split(r'(\s+)', line_with_whitespace)
             
-            if line_code_arr[1] == '\n':
-                total_line_num += 1
-                condition_flag = False
-                continue
-
             if total_line_num == 1:
                 data[total_line_num] = line_code_arr
                 total_line_num = 2
                 continue
             
-            # print(line_code_arr)
+            print(line_code_arr)
             if line_code_arr[2] == 'if' or line_code_arr[2] == 'elif' or line_code_arr[2] == 'else:':
                 condition_flag = True
-                # print(line_code_arr[2])
-            elif len(line_code_arr[1]) == 4: 
+            elif len(line_code_arr[1]) == 4 : 
                 condition_flag = False
 
             # print(condition_flag)
@@ -39,20 +56,10 @@ def check_method(filename):
                 indentation = False
                 end = total_line_num - 1
 
-            # print(indentation)
+            print(indentation)
             if indentation == True:
                 count +=1
-                for i in range(len(line_code_arr)):
-                    if line_code_arr[i] == 'return' or line_code_arr[i] == '#':
-                        break
-
-                    if re.match(r'^["\']', line_code_arr[i]) is not None:
-                        break
-                    
-                    
-                    if (line_code_arr[i].isalpha() and not keyword.iskeyword(line_code_arr[i])):
-                        if line_code_arr[i] not in variables:
-                            variables.append(line_code_arr[i])
+                create_parameters(line_code_arr, variables)
                         
                 # print(long_condition)
                 if line_code_arr[-1] != '':
@@ -67,11 +74,11 @@ def check_method(filename):
                     num_of_long_conditions += 1
                     long_condition[num_of_long_conditions] = [[start, end], variables]
                     variables = []
+                else:
+                    variables = []
                 count = 0
             
             data[total_line_num] = line_code_arr
             total_line_num += 1
-           
-    print(long_condition)
-                        
+                             
     return data, long_condition

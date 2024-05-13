@@ -16,7 +16,6 @@ def write_function_name(parameters):
     function_name.extend(function_name_ending)
     method_count += 1
     
-    # print(function_name)
     name = '    '
     for i  in function_name[2:]:
         if i == '):':

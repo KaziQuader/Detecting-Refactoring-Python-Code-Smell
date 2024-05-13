@@ -2,7 +2,6 @@ import re
 
 def check_file_format(filename):
     new_lines = []
-    statements = ['if', 'elif', 'else']
     need_format = False
     count = 0
 
@@ -12,9 +11,8 @@ def check_file_format(filename):
             modified_line = ''
             line_with_whitespace = line.decode("utf-8")
             line_code_arr = re.split(r'(\s+)', line_with_whitespace)
-            print(line_code_arr)
-
-            if line_code_arr[1] == '\n':
+            
+            if line_code_arr[1] == '\n' or line_code_arr[1] == '            \n':
                 continue
 
             if count == 1 and len(line_code_arr[1]) > 4:
@@ -30,9 +28,7 @@ def check_file_format(filename):
 
                 modified_line += line_code_arr[i]
 
-            # print(modified_line)
             new_lines.append(modified_line)
-            # print(new_lines)
             count += 1
 
     with open(filename, 'w') as f:
