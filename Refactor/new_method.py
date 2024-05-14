@@ -45,6 +45,7 @@ def method_1(age, gender, income):
                 return 'Senior female with moderate income'
             else:
                 return 'Senior female with high income'
+        
 
 def method_2(age, gender, income):
     if age < 18:

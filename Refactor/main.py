@@ -10,6 +10,7 @@ def main(filename):
     print(long_condition)
     # if len(long_condition) != 0:
     #     functions = extract_method(data, long_condition)
+            
     #     refactor(functions, long_condition, filename)
     # else:
     #     print("There is no if statement that is between 6 and 50")

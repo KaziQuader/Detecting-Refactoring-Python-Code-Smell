@@ -1,5 +1,4 @@
 def classify_person(age, gender, income):
-    num, x, y = 10, 5, 7
     if age < 18:
         if gender == 'male':
             if income < 20000:

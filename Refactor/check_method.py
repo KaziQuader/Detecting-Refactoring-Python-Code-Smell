@@ -45,7 +45,7 @@ def check_method(filename):
             print(line_code_arr)
             if line_code_arr[2] == 'if' or line_code_arr[2] == 'elif' or line_code_arr[2] == 'else:':
                 condition_flag = True
-            elif len(line_code_arr[1]) == 4 : 
+            elif len(line_code_arr[1]) == 4: 
                 condition_flag = False
 
             # print(condition_flag)
@@ -70,7 +70,7 @@ def check_method(filename):
                 start = total_line_num 
 
             if indentation == False:
-                if count > 6:
+                if count > 6 or count < 50:
                     num_of_long_conditions += 1
                     long_condition[num_of_long_conditions] = [[start, end], variables]
                     variables = []

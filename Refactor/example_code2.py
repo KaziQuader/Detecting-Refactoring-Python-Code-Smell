@@ -55,9 +55,12 @@ def _real_extract(self, url):
     for sub in try_get(playable, lambda x: x['subtitles'], list) or []:
         if not isinstance(sub, dict):
             continue
+
         sub_url = url_or_none(sub.get('webVtt'))
+
         if not sub_url:
             continue
+        
         sub_key = str_or_none(sub.get('language')) or 'nb'
         sub_type = str_or_none(sub.get('type'))
         if sub_type:

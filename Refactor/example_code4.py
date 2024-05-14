@@ -47,7 +47,7 @@ def _parseBurpLog(content):
         newline = None
         lines = request.split('\n')
         headers = []
-        for index in xrange(len(lines)):
+        for index in range(len(lines)):
             line = lines[index]
             if not line.strip() and index == len(lines) - 1:
                 break
