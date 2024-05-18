@@ -47,7 +47,7 @@ def _parseBurpLog(content):
         newline = None
         lines = request.split('\n')
         headers = []
-        for index in xrange(len(lines)):
+        for index in range(len(lines)):
             line = lines[index]
             if not line.strip() and index == len(lines) - 1:
                 break
@@ -128,3 +128,25 @@ def _parseBurpLog(content):
         yield target
     for target in _parseWebScarabLog(content):
         yield target
+          # x = 5
+        # z = 4
+        # i = 0 
+        # while i != 2:
+        #     if age < 18:
+        #         if gender == 'male':
+        #             if income < 20000:
+        #                 return 'Young male with low income'
+        #             elif 20000 <= income < 40000:
+        #                 x = 5
+        #                 return 'Young male with moderate income'
+        #             else:
+        #                 i -= 1
+        #                 return 'Young male with high income'
+        #         else:  # Gender is female
+        #             if income < 20000:
+        #                 return 'Young female with low income'
+        #             elif 20000 <= income < 40000:
+        #                 return 'Young female with moderate income'
+        #             else:
+        #                 return 'Young female with high income'
+        #     i += 1
