@@ -16,4 +16,8 @@ def main(filename):
     
 
 if __name__ == "__main__":
+<<<<<<< HEAD
     main('example_code.py')
+=======
+    main('Refactor/example_code.py')
+>>>>>>> afe7f988d658fe8e3d0535f11c3af95e1584b5d8
